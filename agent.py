@@ -2,6 +2,9 @@ from collections import deque
 from jax import random
 import jax.numpy as jnp
 from model import init_network_params, update, predict, batch_func
+import logging
+
+logger = logging.getLogger()
 
 
 class Agent:
@@ -12,10 +15,10 @@ class Agent:
         lr=0.001,
         epsilon_hlife=500,
         epsilon=1,
-        epsilon_min = 0.2,
-        buffer_size=100000,
+        epsilon_min=0.2,
+        buffer_size=1000000,
         discount_factor=0.90,
-        **kwargs
+        **kwargs,
     ):
         # Options
         self.lr = lr
@@ -32,15 +35,18 @@ class Agent:
         self.batched_predict = lambda observations: batch_func(predict)(self.params, observations)
         self.steps_trained = 0
 
-    def act(self, key, observation, ep_num, explore=True):
-        self.epsilon = (self.epsilon_decay ** self.steps_trained) * (self.epsilon_init - self.epsilon_min) + self.epsilon_min
+    def act(self, key, observation, explore=True):
+        self.epsilon = (self.epsilon_decay ** self.steps_trained) * (
+            self.epsilon_init - self.epsilon_min
+        ) + self.epsilon_min
         if explore and random.uniform(key) < self.epsilon:
-            a = random.randint(key, (), 0, self.layer_spec[-1])
+            action = random.randint(key, (), 0, self.layer_spec[-1])
         else:
-            Q = self.predict(observation)
+            Q = predict(self.params, observation)
             a = jnp.argmax(Q)
+            action = a
 
-        return int(a)
+        return int(action)
 
     def update(self, key, batch_size):
         self.steps_trained += 1
@@ -69,6 +75,34 @@ class Agent:
         )
         return loss
 
+    def _pack_params(self):
+        p = []
+        for w, b in self.params:
+            p.append(w)
+            p.append(b)
+        return p
+
+    @classmethod
+    def _unpack_params(cls, p):
+        layer_spec = [list(p)[0].shape[1]]
+        params = []
+        for w, b in zip(*[iter(p)] * 2):
+            params.append((jnp.array(w), jnp.array(b)))
+            layer_spec.append(len(b))
+        return params, layer_spec
+
+    def save(self, fp):
+        jnp.savez(fp, *self._pack_params())
+
+    @classmethod
+    def load(cls, fp):
+        z = jnp.load(fp).values()
+        params, layer_spec = cls._unpack_params(z)
+        instance = cls(layer_spec, random.PRNGKey(0))
+        instance.params = params
+        logger.info(f"Successfully loaded model from {fp}")
+        return instance
+
 
 class ReplayBuffer:
     def __init__(self, maxlen):
@@ -81,8 +115,8 @@ class ReplayBuffer:
         # Each item to be its own tensor of len batch_size
         b = list(zip(*batch))
         #  buf = jnp.array(self.buf)
-        buf_mean = 0 
-        buf_std = 1 
+        buf_mean = 0
+        buf_std = 1
         return [(jnp.asarray(t) - buf_mean) / buf_std for t in b]
 
     def append(self, x):
