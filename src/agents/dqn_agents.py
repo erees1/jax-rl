@@ -5,12 +5,18 @@ import model as m
 
 
 class DQNAgent(BaseAgent):
-    def __init__(self, layer_spec, **kwargs):
-        super().__init__(layer_spec, **kwargs)
+    def __init__(self, layer_spec=None, **kwargs):
+        super().__init__(**kwargs)
         self.predict = lambda observations: m.predict(self.params, observations)
         self.batched_predict = lambda observations: m.batch_func(m.predict)(
             self.params, observations
         )
+
+        if layer_spec is not None:
+            self.register_param(
+                "params", m.init_network_params(layer_spec, self.key)
+            )
+            self.layer_spec = layer_spec
 
     def act(self, observation, explore=True):
         self.key, subkey = random.split(self.key)
@@ -68,12 +74,15 @@ class DQNAgent(BaseAgent):
 
 
 class DQNFixedTarget(DQNAgent):
-    def __init__(self, layer_spec, update_every=100, **kwargs):
-        super().__init__(layer_spec, **kwargs)
+    def __init__(self, layer_spec=None, update_every=100, **kwargs):
+        super().__init__(layer_spec=layer_spec, **kwargs)
         self.update_every = update_every
         # Need to update key so target_params != params
         self.key = random.split(self.key)[0]
-        self.target_params = m.init_network_params(layer_spec, self.key)
+        if layer_spec is not None:
+            self.register_param(
+                "target_params", m.init_network_params(layer_spec, self.key)
+            )
 
         # Target functions
         self.batched_predict_target = lambda observations: m.batch_func(m.predict)(

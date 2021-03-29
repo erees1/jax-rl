@@ -1,0 +1,1 @@
+{"batch_size": 256, "demo": false, "seed": 1, "n_layers": 2, "render": true, "discount_factor": 0.99, "train_eps": 100, "test_eps": 30, "epsilon_hlife": 1500, "lr": 0.01, "warm_up_eps": 20, "save_dir": "out/CartPole-v1/dqnft/EPS100-LR0.01-DF0.99/1", "dqnft_update_every": 100}

@@ -6,17 +6,14 @@ Implementation of Deep Reinforcement Learning using Jax. Testing on the OpenAI g
 
 ## Algorithms
 
-1. DQN
-2. DDQN
-3. Actor Critic
-
-
+1. DQN - [Mnih V, Kavukcuoglu K, Silver D, et al. Playing Atari with Deep Reinforcement Learning](https://arxiv.org/abs/1312.5602)
+2. DQN with target network - [Mnih V, Kavukcuoglu K, Silver D, et al. Human-level control through deep reinforcement learning](https://www.nature.com/articles/nature14236)
 
 ## Usage
 
 ```bash
 # Install deps
-pip install -r requirements.tex
+pip install -r requirements.text
 ```
 
 ### Training models
@@ -25,22 +22,23 @@ pip install -r requirements.tex
 ./launch.sh
 
 # Using python
-python3 run.py --train_eps 100 --n_layers 3 --seed 1 --test_eps 30 --lr 0.03 --batch_size 256 --warm_up_steps 500 --              epsilon_hlife 1500 --save_dir out/CartPole-v1/run/1
+python3 run.py --agent dqn --train_eps 100 --n_layers 3 --seed 1 --test_eps 30 --lr 0.03 --batch_size 256 --warm_up_steps 500 --epsilon_hlife 1500 --save_dir out/CartPole-v1/dqn/example_run/1
 ```
 
 ### Demo
 ```bash
 # Running demo with trained model, will search the <out> directory to find best performing model
-python3 run.py --demo --save_dir out
+python3 run.py --demo --save_dir out --agent dqn
 ```
 
 ### Results
-Results are logged while running, the notebook [`results.ipynb`](./results.ipynb) plots reward curves from training and testing. The notebook uses [`utils.py`](utils.py) to parse the logs. 
+Results are logged while running, the notebook [`notebooks/results.ipynb`](notebooks/results.ipynb) plots reward curves from training and testing. The notebook uses [`utils.py`](src/utils.py) to parse the logs. 
 
 
 ## Structure
-* [`agent.py`](agent.py) - Q learning algorithm, exploration and action
-* [`model.py`](model.py) - Jax code with neural network implementation, loss function and SGD
-* [`run.py`](run.py) - Top level interface to train, test and demo models.
-* [`results.ipynb`](results.ipynb) - Visualization of training and test curves
-* [`utils.py`](utils.py) - Code to parse logs
+* [`notebooks/results.ipynb`](notebooks/results.ipynb) - Visualization of training and test curves
+* [`src/agents`](./agents) - Directory containing algorithms
+* [`src/model.py`](src/model.py) - Jax code with neural network implementation, loss function and SGD
+* [`src/run.py`](src/run.py) - Top level interface to train, test and demo models.
+* [`src/utils.py`](src/utils.py) - Code to parse logs
+

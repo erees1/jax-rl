@@ -18,6 +18,9 @@ sh.setFormatter(formatter)
 logger.addHandler(sh)
 
 
+WEIGHTS_NAME = "params.npz"
+
+
 def run(
     env,
     agent,
@@ -77,7 +80,12 @@ def run(
         elif training and i_episode > warm_up_eps:
             ep_mean_loss = jnp.array(ep_loss).mean()
             msg = log_msg(
-                "Training", i_episode - warm_up_eps, total_steps, ep_reward, epsilon, ep_mean_loss
+                "Training",
+                i_episode - warm_up_eps,
+                total_steps,
+                ep_reward,
+                epsilon,
+                ep_mean_loss,
             )
             ep_losses.append(ep_mean_loss)
 
@@ -105,24 +113,27 @@ def play_one_step(env, agent, observation, training=False):
 def train(env, agent, train_eps=200, save_dir=None, **kwargs):
     rewards, losses, agent = run(env, agent, ep_steps=train_eps, **kwargs)
     if save_dir is not None:
-        agent.save(save_dir)
+        agent.save(os.path.join(save_dir, WEIGHTS_NAME))
     return rewards, losses, agent
 
 
-def test(env, agent, test_eps=100, **kwargs):
+def test(env, agent, test_eps=100, warm_up_eps=0, **kwargs):
     # agent could specify path to weights
     if isinstance(agent, str):
         agent.load(agent)
 
-    return run(env, agent, training=False, ep_steps=test_eps, **kwargs)[0]
+    return run(
+        env, agent, training=False, warm_up_eps=0, ep_steps=test_eps, **kwargs
+    )[0]
 
 
-def demo(env, agent, test_eps=20, save_dir=None, **kwargs):
+def demo(env, agent, agent_spec=None, test_eps=5, save_dir=None, **kwargs):
     env_name = env.unwrapped.spec.id
     if save_dir is None:
         raise ValueError("Must specify save_dir so model can be found")
 
-    fp = get_best_model(env_name, save_dir)
+    dir_to_check = os.path.join(save_dir, env_name, agent_spec)
+    fp = get_best_model(dir_to_check)
     agent = agent.load(fp)
 
     # Always render demo
@@ -130,20 +141,20 @@ def demo(env, agent, test_eps=20, save_dir=None, **kwargs):
     return run(env, agent, training=False, ep_steps=test_eps, render=True, **kwargs)
 
 
-def get_best_model(env_name, out_dir):
+def get_best_model(out_dir):
     scores = []
     model_paths = []
-    for path in Path(os.path.join(out_dir, env_name)).glob("*/*"):
+    for path in Path(out_dir).glob("*/*"):
         try:
             _, rt = parse_logs(os.path.join(path, "log"))
             if rt is not None:
                 scores.append(rt)
-                model_paths.append(os.path.join(path, "params.npz"))
-        except (AttributeError, FileNotFoundError):
+                model_paths.append(os.path.join(path, WEIGHTS_NAME))
+        except (AttributeError, FileNotFoundError, NotADirectoryError):
             continue
 
     if len(model_paths) == 0:
-        raise FileNotFoundError("Could not find any trained models")
+        raise FileNotFoundError(f"Could not find any trained models in {out_dir}")
 
     best_score = np.argmax(np.array(scores))
     return model_paths[int(best_score)]
@@ -210,7 +221,10 @@ def main():
 
     # Neural network spec
     observation_size = sum(env.observation_space.shape)
-    layer_spec = [observation_size] + args.n_layers * [32] + [env.action_space.n]
+    if args.demo:
+        layer_spec = None
+    else:
+        layer_spec = [observation_size] + args.n_layers * [32] + [env.action_space.n]
 
     # Load the agent
     agent_spec = vars(args).pop("agent")
@@ -220,9 +234,10 @@ def main():
         agent = DQNFixedTarget(layer_spec, **vars(args))
 
     if args.demo:
-        demo(env, **vars(args))
+        demo(env, agent, agent_spec=agent_spec, **vars(args))
 
     else:
+        # Setup logging etc
         if args.save_dir is not None:
             setup_save_dir(args.save_dir)
             save_args(args)

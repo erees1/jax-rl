@@ -21,7 +21,7 @@ seeds=(1 2 3)
 . scripts/parse_options.sh
 
 # Set up output directory
-save_dir=out/$env/$agent-EPS$train_eps-LR$lr-DF$df
+save_dir=out/$env/$agent/EPS$train_eps-LR$lr-DF$df
 mkdir -p "$save_dir"
 
 for seed in ${seeds[@]}; do
@@ -49,3 +49,5 @@ EOF
 chmod +x "${save_dir}"/launch.qsh
 "${save_dir}/launch.qsh"
 done
+
+true;

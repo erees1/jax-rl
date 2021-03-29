@@ -34,7 +34,7 @@ def kaiming(key, m, n):
 
 # Initialize all layers for a fully-connected neural network with sizes "sizes"
 def init_network_params(sizes, key):
-    logger.info(f"Initializing model with layers {sizes}")
+    logger.info(f"Randomly initializing a network with layers {sizes}")
     keys = random.split(key, len(sizes))
     return [random_layer_params(m, n, k) for m, n, k in zip(sizes[:-1], sizes[1:], keys)]
 
