@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [[ ! -f out/CartPole-v1/EPS120-LR0.001-DF0.985/done_train ]]; then
+    python3 src/run.py         --train_eps 120         --n_layers 3         --seed 5         --test_eps 30         --lr 0.001         --batch_size 256         --epsilon_hlife 1500         --save_dir out/CartPole-v1/EPS120-LR0.001-DF0.985/5         --discount_factor 0.985         --render true 
+fi

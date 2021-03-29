@@ -1,8 +1,19 @@
-# jax-dqn
+# Deep reinforcment learning algorithms implemented with Jax
 
-Implementation of DQN Reinforcement Learning using Jax. Tested on the OpenAI gym CartPole environment.
+<img src="README.assets/logo.png" alt="image-20210329144135162"  />
+
+Implementation of Deep Reinforcement Learning using Jax. Testing on the OpenAI gym CartPole environment.
+
+## Algorithms
+
+1. DQN
+2. DDQN
+3. Actor Critic
+
+
 
 ## Usage
+
 ```bash
 # Install deps
 pip install -r requirements.tex
