@@ -1,10 +1,53 @@
-ENV='CartPole-v1'
-TRAIN_EPS=100
-LR=0.002
-DF=0.98
-SEEDS=(1 2 3)
-DIR=out/$ENV/EPS$TRAIN_EPS-LR$LR-DF$DF
+set -euo pipefail
+P_DIR=$(dirname $0)
+VENV=$P_DIR/venv/bin/activate
 
-for seed in ${SEEDS[@]}; do
-    ./venv/bin/python3 run.py --train_eps $TRAIN_EPS --n_layers 3 --seed $seed --test_eps 30 --lr $LR --batch_size 256 --warm_up_steps 500 --epsilon_hlife 1500 --save_dir $DIR/$seed --discount_factor $DF 
+# Options
+env='CartPole-v1'
+agent='dqn'
+train_eps=100
+lr=0.01
+df=0.99
+render=true
+test_eps=30
+n_layers=2
+batch_size=256
+epsilon_hlife=1500
+
+# Sweeps
+seeds=(1 2 3)
+
+# This will parse command line arguments and overwrite thoose above 
+. scripts/parse_options.sh
+
+# Set up output directory
+save_dir=out/$env/$agent/EPS$train_eps-LR$lr-DF$df
+mkdir -p "$save_dir"
+
+for seed in ${seeds[@]}; do
+
+cat <<EOF >"${save_dir}"/launch.qsh
+#!/bin/bash
+
+source $VENV
+
+python3 src/run.py \
+    --agent $agent \
+    --train_eps $train_eps \
+    --n_layers $n_layers \
+    --seed $seed \
+    --test_eps $test_eps \
+    --lr $lr \
+    --batch_size $batch_size \
+    --epsilon_hlife $epsilon_hlife \
+    --save_dir $save_dir/$seed \
+    --discount_factor $df \
+    --render $render
+EOF
+
+# Execute launch.qsh
+chmod +x "${save_dir}"/launch.qsh
+"${save_dir}/launch.qsh"
 done
+
+true;

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source ./venv/bin/activate
+
+python3 src/run.py     --agent dqn     --train_eps 100     --n_layers 2     --seed 3     --test_eps 30     --lr 0.01     --batch_size 256     --epsilon_hlife 1500     --save_dir out/CartPole-v1/dqn/EPS100-LR0.01-DF0.99/3     --discount_factor 0.99     --render true

@@ -1,0 +1,191 @@
+Warmup: Episode 0, Total Steps 22, Reward 22.0, Epsilon 1.0000
+Warmup: Episode 1, Total Steps 59, Reward 37.0, Epsilon 1.0000
+Warmup: Episode 2, Total Steps 76, Reward 17.0, Epsilon 1.0000
+Warmup: Episode 3, Total Steps 94, Reward 18.0, Epsilon 1.0000
+Warmup: Episode 4, Total Steps 109, Reward 15.0, Epsilon 1.0000
+Warmup: Episode 5, Total Steps 122, Reward 13.0, Epsilon 1.0000
+Warmup: Episode 6, Total Steps 152, Reward 30.0, Epsilon 1.0000
+Warmup: Episode 7, Total Steps 169, Reward 17.0, Epsilon 1.0000
+Warmup: Episode 8, Total Steps 187, Reward 18.0, Epsilon 1.0000
+Warmup: Episode 9, Total Steps 203, Reward 16.0, Epsilon 1.0000
+Warmup: Episode 10, Total Steps 214, Reward 11.0, Epsilon 1.0000
+Warmup: Episode 11, Total Steps 240, Reward 26.0, Epsilon 1.0000
+Warmup: Episode 12, Total Steps 253, Reward 13.0, Epsilon 1.0000
+Warmup: Episode 13, Total Steps 280, Reward 27.0, Epsilon 1.0000
+Warmup: Episode 14, Total Steps 304, Reward 24.0, Epsilon 1.0000
+Warmup: Episode 15, Total Steps 323, Reward 19.0, Epsilon 1.0000
+Warmup: Episode 16, Total Steps 337, Reward 14.0, Epsilon 1.0000
+Warmup: Episode 17, Total Steps 360, Reward 23.0, Epsilon 1.0000
+Warmup: Episode 18, Total Steps 382, Reward 22.0, Epsilon 1.0000
+Warmup: Episode 19, Total Steps 404, Reward 22.0, Epsilon 1.0000
+Warmup: Episode 20, Total Steps 420, Reward 16.0, Epsilon 1.0000
+Training: Episode 21, Total Steps 432, Reward 12.0, Epsilon 0.9959, Loss 1.456270
+Training: Episode 22, Total Steps 462, Reward 30.0, Epsilon 0.9850, Loss 1.379460
+Training: Episode 23, Total Steps 481, Reward 19.0, Epsilon 0.9781, Loss 1.374892
+Training: Episode 24, Total Steps 517, Reward 36.0, Epsilon 0.9653, Loss 1.479481
+Training: Episode 25, Total Steps 532, Reward 15.0, Epsilon 0.9600, Loss 1.617069
+Training: Episode 26, Total Steps 542, Reward 10.0, Epsilon 0.9565, Loss 1.767538
+Training: Episode 27, Total Steps 561, Reward 19.0, Epsilon 0.9499, Loss 2.014226
+Training: Episode 28, Total Steps 590, Reward 29.0, Epsilon 0.9399, Loss 2.519428
+Training: Episode 29, Total Steps 610, Reward 20.0, Epsilon 0.9331, Loss 3.246632
+Training: Episode 30, Total Steps 637, Reward 27.0, Epsilon 0.9240, Loss 5.051701
+Training: Episode 31, Total Steps 648, Reward 11.0, Epsilon 0.9203, Loss 7.086592
+Training: Episode 32, Total Steps 669, Reward 21.0, Epsilon 0.9134, Loss 9.377584
+Training: Episode 33, Total Steps 683, Reward 14.0, Epsilon 0.9088, Loss 15.193741
+Training: Episode 34, Total Steps 702, Reward 19.0, Epsilon 0.9026, Loss 20.086405
+Training: Episode 35, Total Steps 718, Reward 16.0, Epsilon 0.8974, Loss 32.600201
+Training: Episode 36, Total Steps 753, Reward 35.0, Epsilon 0.8862, Loss 60.398251
+Training: Episode 37, Total Steps 780, Reward 27.0, Epsilon 0.8777, Loss 131.035721
+Training: Episode 38, Total Steps 804, Reward 24.0, Epsilon 0.8702, Loss 216.670425
+Training: Episode 39, Total Steps 839, Reward 35.0, Epsilon 0.8595, Loss 494.363403
+Training: Episode 40, Total Steps 855, Reward 16.0, Epsilon 0.8546, Loss 944.746643
+Training: Episode 41, Total Steps 940, Reward 85.0, Epsilon 0.8294, Loss 2614.184570
+Training: Episode 42, Total Steps 966, Reward 26.0, Epsilon 0.8219, Loss 5101.670898
+Training: Episode 43, Total Steps 981, Reward 15.0, Epsilon 0.8176, Loss 3723.854248
+Training: Episode 44, Total Steps 1003, Reward 22.0, Epsilon 0.8114, Loss 1666.402710
+Training: Episode 45, Total Steps 1016, Reward 13.0, Epsilon 0.8077, Loss 684.094055
+Training: Episode 46, Total Steps 1029, Reward 13.0, Epsilon 0.8040, Loss 417.929810
+Training: Episode 47, Total Steps 1101, Reward 72.0, Epsilon 0.7843, Loss 107.307533
+Training: Episode 48, Total Steps 1143, Reward 42.0, Epsilon 0.7731, Loss 109.490028
+Training: Episode 49, Total Steps 1167, Reward 24.0, Epsilon 0.7667, Loss 140.262711
+Training: Episode 50, Total Steps 1184, Reward 17.0, Epsilon 0.7623, Loss 131.191696
+Training: Episode 51, Total Steps 1259, Reward 75.0, Epsilon 0.7431, Loss 155.984772
+Training: Episode 52, Total Steps 1302, Reward 43.0, Epsilon 0.7325, Loss 161.551147
+Training: Episode 53, Total Steps 1330, Reward 28.0, Epsilon 0.7256, Loss 143.766144
+Training: Episode 54, Total Steps 1351, Reward 21.0, Epsilon 0.7205, Loss 119.262650
+Training: Episode 55, Total Steps 1373, Reward 22.0, Epsilon 0.7153, Loss 122.531906
+Training: Episode 56, Total Steps 1386, Reward 13.0, Epsilon 0.7122, Loss 99.378838
+Training: Episode 57, Total Steps 1412, Reward 26.0, Epsilon 0.7061, Loss 100.481857
+Training: Episode 58, Total Steps 1468, Reward 56.0, Epsilon 0.6931, Loss 111.256050
+Training: Episode 59, Total Steps 1481, Reward 13.0, Epsilon 0.6902, Loss 154.944366
+Training: Episode 60, Total Steps 1609, Reward 128.0, Epsilon 0.6620, Loss 207.256439
+Training: Episode 61, Total Steps 1634, Reward 25.0, Epsilon 0.6567, Loss 368.527649
+Training: Episode 62, Total Steps 1685, Reward 51.0, Epsilon 0.6461, Loss 472.050476
+Training: Episode 63, Total Steps 1697, Reward 12.0, Epsilon 0.6436, Loss 677.813416
+Training: Episode 64, Total Steps 1759, Reward 62.0, Epsilon 0.6311, Loss 793.484009
+Training: Episode 65, Total Steps 1829, Reward 70.0, Epsilon 0.6174, Loss 1341.582764
+Training: Episode 66, Total Steps 1929, Reward 100.0, Epsilon 0.5985, Loss 1706.869385
+Training: Episode 67, Total Steps 1969, Reward 40.0, Epsilon 0.5912, Loss 2124.110107
+Training: Episode 68, Total Steps 2066, Reward 97.0, Epsilon 0.5741, Loss 2416.854980
+Training: Episode 69, Total Steps 2084, Reward 18.0, Epsilon 0.5710, Loss 2659.227539
+Training: Episode 70, Total Steps 2162, Reward 78.0, Epsilon 0.5578, Loss 3544.419189
+Training: Episode 71, Total Steps 2302, Reward 140.0, Epsilon 0.5354, Loss 4553.804199
+Training: Episode 72, Total Steps 2443, Reward 141.0, Epsilon 0.5143, Loss 6707.272949
+Training: Episode 73, Total Steps 2460, Reward 17.0, Epsilon 0.5118, Loss 21449.890625
+Training: Episode 74, Total Steps 2504, Reward 44.0, Epsilon 0.5055, Loss 11397.272461
+Training: Episode 75, Total Steps 2524, Reward 20.0, Epsilon 0.5027, Loss 14792.268555
+Training: Episode 76, Total Steps 2647, Reward 123.0, Epsilon 0.4860, Loss 13906.625977
+Training: Episode 77, Total Steps 2791, Reward 144.0, Epsilon 0.4676, Loss 17395.802734
+Training: Episode 78, Total Steps 2924, Reward 133.0, Epsilon 0.4516, Loss 21021.410156
+Training: Episode 79, Total Steps 3110, Reward 186.0, Epsilon 0.4309, Loss 17946.988281
+Training: Episode 80, Total Steps 3140, Reward 30.0, Epsilon 0.4277, Loss 13151.667969
+Training: Episode 81, Total Steps 3249, Reward 109.0, Epsilon 0.4165, Loss 14865.131836
+Training: Episode 82, Total Steps 3350, Reward 101.0, Epsilon 0.4067, Loss 12550.499023
+Training: Episode 83, Total Steps 3479, Reward 129.0, Epsilon 0.3947, Loss 9866.927734
+Training: Episode 84, Total Steps 3491, Reward 12.0, Epsilon 0.3936, Loss 6072.674316
+Training: Episode 85, Total Steps 3712, Reward 221.0, Epsilon 0.3748, Loss 7895.625488
+Training: Episode 86, Total Steps 3782, Reward 70.0, Epsilon 0.3693, Loss 8182.453613
+Training: Episode 87, Total Steps 3819, Reward 37.0, Epsilon 0.3664, Loss 8550.365234
+Training: Episode 88, Total Steps 3880, Reward 61.0, Epsilon 0.3618, Loss 7476.457031
+Training: Episode 89, Total Steps 3919, Reward 39.0, Epsilon 0.3589, Loss 6931.596191
+Training: Episode 90, Total Steps 4089, Reward 170.0, Epsilon 0.3469, Loss 5993.801270
+Training: Episode 91, Total Steps 4101, Reward 12.0, Epsilon 0.3461, Loss 9309.637695
+Training: Episode 92, Total Steps 4260, Reward 159.0, Epsilon 0.3357, Loss 10553.459961
+Training: Episode 93, Total Steps 4442, Reward 182.0, Epsilon 0.3248, Loss 26384.835938
+Training: Episode 94, Total Steps 4630, Reward 188.0, Epsilon 0.3144, Loss 21392.177734
+Training: Episode 95, Total Steps 4816, Reward 186.0, Epsilon 0.3050, Loss 20501.628906
+Training: Episode 96, Total Steps 5004, Reward 188.0, Epsilon 0.2962, Loss 5055.873535
+Training: Episode 97, Total Steps 5170, Reward 166.0, Epsilon 0.2891, Loss 2099.202393
+Training: Episode 98, Total Steps 5356, Reward 186.0, Epsilon 0.2818, Loss 820.263428
+Training: Episode 99, Total Steps 5673, Reward 317.0, Epsilon 0.2706, Loss 454.801178
+Training: Episode 100, Total Steps 5778, Reward 105.0, Epsilon 0.2673, Loss 453.677307
+Training: Episode 101, Total Steps 5910, Reward 132.0, Epsilon 0.2633, Loss 1228.489380
+Training: Episode 102, Total Steps 5932, Reward 22.0, Epsilon 0.2627, Loss 6764.454590
+Training: Episode 103, Total Steps 5941, Reward 9.0, Epsilon 0.2624, Loss 1167.360840
+Training: Episode 104, Total Steps 6086, Reward 145.0, Epsilon 0.2584, Loss 26076.511719
+Training: Episode 105, Total Steps 6305, Reward 219.0, Epsilon 0.2528, Loss 148130.343750
+Training: Episode 106, Total Steps 6666, Reward 361.0, Epsilon 0.2446, Loss 270021.031250
+Training: Episode 107, Total Steps 6989, Reward 323.0, Epsilon 0.2385, Loss 211784.750000
+Training: Episode 108, Total Steps 7489, Reward 500.0, Epsilon 0.2305, Loss 308329.906250
+Training: Episode 109, Total Steps 7867, Reward 378.0, Epsilon 0.2256, Loss 1034058.000000
+Training: Episode 110, Total Steps 8367, Reward 500.0, Epsilon 0.2203, Loss 2938931.750000
+Training: Episode 111, Total Steps 8600, Reward 233.0, Epsilon 0.2183, Loss 4066931.250000
+Training: Episode 112, Total Steps 8755, Reward 155.0, Epsilon 0.2170, Loss 3055226.500000
+Training: Episode 113, Total Steps 8893, Reward 138.0, Epsilon 0.2160, Loss 4277127.000000
+Training: Episode 114, Total Steps 9062, Reward 169.0, Epsilon 0.2148, Loss 4512152.000000
+Training: Episode 115, Total Steps 9215, Reward 153.0, Epsilon 0.2137, Loss 3571948.000000
+Training: Episode 116, Total Steps 9371, Reward 156.0, Epsilon 0.2128, Loss 5197526.000000
+Training: Episode 117, Total Steps 9541, Reward 170.0, Epsilon 0.2118, Loss 12424587.000000
+Training: Episode 118, Total Steps 9843, Reward 302.0, Epsilon 0.2103, Loss 23549520.000000
+Training: Episode 119, Total Steps 9980, Reward 137.0, Epsilon 0.2097, Loss 42415024.000000
+Training: Episode 120, Total Steps 10143, Reward 163.0, Epsilon 0.2090, Loss 25750430.000000
+Training: Episode 121, Total Steps 10290, Reward 147.0, Epsilon 0.2084, Loss 28630374.000000
+Training: Episode 122, Total Steps 10447, Reward 157.0, Epsilon 0.2078, Loss 26873588.000000
+Training: Episode 123, Total Steps 10600, Reward 153.0, Epsilon 0.2072, Loss 27699534.000000
+Training: Episode 124, Total Steps 10739, Reward 139.0, Epsilon 0.2068, Loss 20747578.000000
+Training: Episode 125, Total Steps 10990, Reward 251.0, Epsilon 0.2061, Loss 17433572.000000
+Training: Episode 126, Total Steps 11273, Reward 283.0, Epsilon 0.2053, Loss 20460730.000000
+Training: Episode 127, Total Steps 11539, Reward 266.0, Epsilon 0.2047, Loss 22472440.000000
+Training: Episode 128, Total Steps 11692, Reward 153.0, Epsilon 0.2044, Loss 33990204.000000
+Training: Episode 129, Total Steps 11830, Reward 138.0, Epsilon 0.2041, Loss 37899776.000000
+Training: Episode 130, Total Steps 11984, Reward 154.0, Epsilon 0.2038, Loss 37465564.000000
+Training: Episode 131, Total Steps 12148, Reward 164.0, Epsilon 0.2035, Loss 53322872.000000
+Training: Episode 132, Total Steps 12413, Reward 265.0, Epsilon 0.2031, Loss 57189832.000000
+Training: Episode 133, Total Steps 12613, Reward 200.0, Epsilon 0.2029, Loss 64814440.000000
+Training: Episode 134, Total Steps 12784, Reward 171.0, Epsilon 0.2026, Loss 63757180.000000
+Training: Episode 135, Total Steps 13016, Reward 232.0, Epsilon 0.2024, Loss 73043040.000000
+Training: Episode 136, Total Steps 13162, Reward 146.0, Epsilon 0.2022, Loss 76553552.000000
+Training: Episode 137, Total Steps 13319, Reward 157.0, Epsilon 0.2021, Loss 85505928.000000
+Training: Episode 138, Total Steps 13464, Reward 145.0, Epsilon 0.2019, Loss 88257424.000000
+Training: Episode 139, Total Steps 13574, Reward 110.0, Epsilon 0.2018, Loss 89337336.000000
+Testing: Episode 0, Total Steps 161, Reward 161.0
+Testing: Episode 1, Total Steps 398, Reward 237.0
+Testing: Episode 2, Total Steps 898, Reward 500.0
+Testing: Episode 3, Total Steps 1082, Reward 184.0
+Testing: Episode 4, Total Steps 1231, Reward 149.0
+Testing: Episode 5, Total Steps 1333, Reward 102.0
+Testing: Episode 6, Total Steps 1442, Reward 109.0
+Testing: Episode 7, Total Steps 1942, Reward 500.0
+Testing: Episode 8, Total Steps 2091, Reward 149.0
+Testing: Episode 9, Total Steps 2591, Reward 500.0
+Testing: Episode 10, Total Steps 2736, Reward 145.0
+Testing: Episode 11, Total Steps 2907, Reward 171.0
+Testing: Episode 12, Total Steps 2997, Reward 90.0
+Testing: Episode 13, Total Steps 3497, Reward 500.0
+Testing: Episode 14, Total Steps 3816, Reward 319.0
+Testing: Episode 15, Total Steps 4215, Reward 399.0
+Testing: Episode 16, Total Steps 4715, Reward 500.0
+Testing: Episode 17, Total Steps 5215, Reward 500.0
+Testing: Episode 18, Total Steps 5715, Reward 500.0
+Testing: Episode 19, Total Steps 5903, Reward 188.0
+Testing: Episode 20, Total Steps 6060, Reward 157.0
+Testing: Episode 21, Total Steps 6560, Reward 500.0
+Testing: Episode 22, Total Steps 7060, Reward 500.0
+Testing: Episode 23, Total Steps 7153, Reward 93.0
+Testing: Episode 24, Total Steps 7246, Reward 93.0
+Testing: Episode 25, Total Steps 7401, Reward 155.0
+Testing: Episode 26, Total Steps 7582, Reward 181.0
+Testing: Episode 27, Total Steps 7729, Reward 147.0
+Testing: Episode 28, Total Steps 7852, Reward 123.0
+Testing: Episode 29, Total Steps 7957, Reward 105.0
+Testing: Episode 30, Total Steps 8092, Reward 135.0
+Testing: Episode 31, Total Steps 8592, Reward 500.0
+Testing: Episode 32, Total Steps 8703, Reward 111.0
+Testing: Episode 33, Total Steps 9028, Reward 325.0
+Testing: Episode 34, Total Steps 9228, Reward 200.0
+Testing: Episode 35, Total Steps 9378, Reward 150.0
+Testing: Episode 36, Total Steps 9878, Reward 500.0
+Testing: Episode 37, Total Steps 10037, Reward 159.0
+Testing: Episode 38, Total Steps 10137, Reward 100.0
+Testing: Episode 39, Total Steps 10311, Reward 174.0
+Testing: Episode 40, Total Steps 10419, Reward 108.0
+Testing: Episode 41, Total Steps 10820, Reward 401.0
+Testing: Episode 42, Total Steps 10925, Reward 105.0
+Testing: Episode 43, Total Steps 11425, Reward 500.0
+Testing: Episode 44, Total Steps 11925, Reward 500.0
+Testing: Episode 45, Total Steps 12094, Reward 169.0
+Testing: Episode 46, Total Steps 12203, Reward 109.0
+Testing: Episode 47, Total Steps 12309, Reward 106.0
+Testing: Episode 48, Total Steps 12518, Reward 209.0
+Testing: Episode 49, Total Steps 12645, Reward 127.0
+Testing: Average reward over 50 episodes 252.900
