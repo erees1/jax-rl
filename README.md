@@ -8,6 +8,7 @@ Implementation of Deep Reinforcement Learning using Jax. Testing on the OpenAI g
 
 1. DQN - [Mnih V, Kavukcuoglu K, Silver D, et al. Playing Atari with Deep Reinforcement Learning](https://arxiv.org/abs/1312.5602)
 2. DQN with target network - [Mnih V, Kavukcuoglu K, Silver D, et al. Human-level control through deep reinforcement learning](https://www.nature.com/articles/nature14236)
+3. DDQN - [Van Hasselt H, Guez A, Silver D. Deep reinforcement learning with double Q-Learning](https://arxiv.org/abs/1509.06461)
 
 ## Usage
 

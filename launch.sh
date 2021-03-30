@@ -4,7 +4,7 @@ VENV=$P_DIR/venv/bin/activate
 
 # Options
 env='CartPole-v1'
-agent='dqn'
+agent='ddqn'
 train_eps=100
 lr=0.01
 df=0.99

@@ -1,6 +1,6 @@
 import json
 import gym
-from agents import DQNAgent, DQNFixedTarget
+from agents import DQNAgent, DQNFixedTarget, DDQN
 from argparse import ArgumentParser
 import logging
 import jax.numpy as jnp
@@ -187,7 +187,7 @@ def main():
     parser.add_argument(
         "--agent",
         default="dqn",
-        choices=["dqn", "dqnft"],
+        choices=["dqn", "dqnft", "ddqn"],
         help="What algorithm to use",
     )
     parser.add_argument("--env", help="name of environment", default="CartPole-v1")
@@ -229,9 +229,12 @@ def main():
     # Load the agent
     agent_spec = vars(args).pop("agent")
     if agent_spec == "dqn":
-        agent = DQNAgent(layer_spec, **vars(args))
+        Agent = DQNAgent
     elif agent_spec == "dqnft":
-        agent = DQNFixedTarget(layer_spec, **vars(args))
+        Agent = DQNFixedTarget
+    elif agent_spec == "ddqn":
+        Agent = DDQN
+    agent = Agent(layer_spec=layer_spec, **vars(args))
 
     if args.demo:
         demo(env, agent, agent_spec=agent_spec, **vars(args))

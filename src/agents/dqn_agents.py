@@ -36,8 +36,7 @@ class DQNAgent(BaseAgent):
         def get_Q_for_actions(params, observations):
             """Calculate Q values for action that was taken"""
             pred_Q_values = m.batch_func(m.predict)(params, observations)
-            idx = jnp.expand_dims(actions, -1)
-            pred_Q_values = jnp.take_along_axis(pred_Q_values, idx, -1).squeeze()
+            pred_Q_values = index_Q_at_action(pred_Q_values, actions)
             return pred_Q_values
 
         (
@@ -96,3 +95,27 @@ class DQNFixedTarget(DQNAgent):
         next_Q_values = self.batched_predict_target(next_obs)
         max_next_Q_values = jnp.max(next_Q_values, axis=-1)
         return max_next_Q_values
+
+
+class DDQN(DQNFixedTarget):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def get_max_Q_values(self, next_obs):
+        if self.steps_trained % self.update_every == 0:
+            # Jax arrays are immutable
+            self.target_params = self.params
+
+        next_Q_values_target = self.batched_predict_target(next_obs)
+        next_Q_values_online = self.batched_predict(next_obs)
+        actions = jnp.argmax(next_Q_values_online, axis=-1)
+        return index_Q_at_action(next_Q_values_target, actions)
+
+
+def index_Q_at_action(Q_values, actions):
+    # Q_values [bsz, n_actions]
+    # Actions [bsz,]
+    idx = jnp.expand_dims(actions, -1)
+    # pred_Q_values [bsz,]
+    pred_Q_values = jnp.take_along_axis(Q_values, idx, -1).squeeze()
+    return pred_Q_values
