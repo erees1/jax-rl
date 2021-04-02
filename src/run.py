@@ -21,6 +21,15 @@ logger.addHandler(sh)
 WEIGHTS_NAME = "params.npz"
 
 
+def log_msg(t, i, total_steps, ep_reward, epsilon=None, loss=None):
+    msg = f"{t}: Episode {i}, Total Steps {total_steps}, Reward {ep_reward}"
+    if loss is not None:
+        msg += f", Loss {loss:4f}"
+    if epsilon is not None:
+        msg += f", Epsilon {epsilon:.4f}"
+    logging.info(msg)
+
+
 def run(
     env,
     agent,
@@ -29,30 +38,36 @@ def run(
     render=False,
     warm_up_eps=0,
     seed=0,
+    val_every=10,
+    log=True,
+    logging_callback=log_msg,
     **kwargs,
 ):
-    ep_rewards = []
-    ep_losses = []
+    ep_rewards, ep_losses = [], []
     total_steps = 0
+    if not training:
+        desc = "Testing"
+    else:
+        desc = "Warmup"
 
-    for i_episode in range(int(ep_steps + warm_up_eps)):
-        observation = env.reset()
+    for ep in range(int(ep_steps + warm_up_eps)):
+        obs = env.reset()
         ep_reward = 0
         ep_loss = []
         done = False
         t = 0
 
+        # Episode loop
         while not done:
             if render:
                 env.render()
 
             # Step environment and add to buffer
-            observation, reward, done, info = play_one_step(
-                env, agent, observation, training
-            )
+            obs, reward, done, info = play_one_step(env, agent, obs, training)
 
             # Update model if training
-            if training and i_episode > warm_up_eps:
+            if training and ep > warm_up_eps:
+                desc = "Training"
                 loss = agent.update(kwargs["batch_size"])
                 ep_loss.append(loss)
 
@@ -61,43 +76,32 @@ def run(
             t += 1
             total_steps += 1
 
-        # End of episode logging
-        def log_msg(t, i, total_steps, ep_reward, epsilon=None, loss=None):
-            msg = f"{t}: Episode {i}, Total Steps {total_steps}, Reward {ep_reward}"
-            if loss is not None:
-                msg += f", Loss {ep_mean_loss:4f}"
-            if epsilon is not None:
-                msg += f", Epsilon {epsilon:.4f}"
-            return msg
-
         ep_rewards.append(ep_reward)
 
         # Log appropriatley
+        ep_mean_loss = jnp.array(ep_loss).mean() if ep_loss else None
         epsilon = agent.epsilon
-        if training and i_episode <= warm_up_eps:
-            msg = log_msg("Warmup", i_episode, total_steps, ep_reward, epsilon)
+        logging_callback(desc, ep, total_steps, ep_reward, epsilon, ep_mean_loss)
 
-        elif training and i_episode > warm_up_eps:
-            ep_mean_loss = jnp.array(ep_loss).mean()
-            msg = log_msg(
-                "Training",
-                i_episode - warm_up_eps,
-                total_steps,
-                ep_reward,
-                epsilon,
-                ep_mean_loss,
+        # Validate performance periodically
+        if val_every is not None and ep % val_every == 0 and training:
+            val_eps = 10
+            val_rewards, _, _ = run(
+                env,
+                agent,
+                test_eps=val_eps,
+                training=False,
+                render=False,
+                logging_callback=(lambda *x: x),
             )
-            ep_losses.append(ep_mean_loss)
+            mean_val_reward = np.array(val_rewards).mean()
+            log_msg(
+                f"Validating over {val_eps} episodes",
+                ep,
+                total_steps,
+                mean_val_reward,
+            )
 
-        else:
-            msg = log_msg("Testing", i_episode, total_steps, ep_reward, epsilon)
-        logger.info(msg)
-
-    env.close()
-    if not training:
-        logger.info(
-            f"Testing: Average reward over {i_episode + 1} episodes {jnp.array(ep_rewards).mean():0.3f}"
-        )
     return ep_rewards, ep_losses, agent
 
 
@@ -111,7 +115,9 @@ def play_one_step(env, agent, observation, training=False):
 
 
 def train(env, agent, train_eps=200, save_dir=None, **kwargs):
-    rewards, losses, agent = run(env, agent, ep_steps=train_eps, **kwargs)
+    rewards, losses, agent = run(
+        env, agent, ep_steps=train_eps, logging_callback=log_msg, **kwargs
+    )
     if save_dir is not None:
         agent.save(os.path.join(save_dir, WEIGHTS_NAME))
     return rewards, losses, agent
@@ -121,10 +127,19 @@ def test(env, agent, test_eps=100, warm_up_eps=0, **kwargs):
     # agent could specify path to weights
     if isinstance(agent, str):
         agent.load(agent)
-
-    return run(
-        env, agent, training=False, warm_up_eps=0, ep_steps=test_eps, **kwargs
+    ep_rewards = run(
+        env,
+        agent,
+        training=False,
+        warm_up_eps=0,
+        ep_steps=test_eps,
+        logging_callback=log_msg,
+        **kwargs,
     )[0]
+    logger.info(
+        f"Testing: Average reward over {test_eps} episodes {jnp.array(ep_rewards).mean():0.3f}"
+    )
+    return ep_rewards
 
 
 def demo(env, agent, agent_spec=None, test_eps=5, save_dir=None, **kwargs):
