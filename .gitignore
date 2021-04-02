@@ -139,6 +139,7 @@ cython_debug/
 
 .DS_Store
 .vscode
+.vim
 
 scratch.ipynb
 python_simulator/test.ipynb
