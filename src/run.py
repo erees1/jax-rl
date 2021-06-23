@@ -210,7 +210,9 @@ def main():
     parser.add_argument("--demo", action="store_true")
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--n_layers", type=int, default=2)
-    parser.add_argument("--render", type=bool, help="whether to render environment")
+    parser.add_argument(
+        "--render", default="False", type=str, help="whether to render environment"
+    )
     parser.add_argument("--discount_factor", type=float, default=0.95)
     parser.add_argument("--train_eps", type=int, default=200)
     parser.add_argument("--test_eps", type=int, default=10)
@@ -229,6 +231,7 @@ def main():
     )
 
     args = parser.parse_args()
+    args.render = False if args.render in ["False", "false", "f"] else True
 
     # Create environment specified
     env = gym.make(vars(args).pop("env"))

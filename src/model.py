@@ -36,7 +36,9 @@ def kaiming(key, m, n):
 def init_network_params(sizes, key):
     logger.info(f"Randomly initializing a network with layers {sizes}")
     keys = random.split(key, len(sizes))
-    return [random_layer_params(m, n, k) for m, n, k in zip(sizes[:-1], sizes[1:], keys)]
+    return [
+        random_layer_params(m, n, k) for m, n, k in zip(sizes[:-1], sizes[1:], keys)
+    ]
 
 
 def relu(x):
@@ -47,14 +49,18 @@ def mse_loss(func, params, X, Y):
     preds = func(params, X)
     lo = jnp.mean(jnp.square(preds - Y))
     if jnp.isnan(lo):
-        raise ValueError(f"Loss went to nan, the predictions were {preds} and the target was {Y}")
+        raise ValueError(
+            f"Loss went to nan, the predictions were {preds} and the target was {Y}"
+        )
     return lo
 
 
 def update(func, params, X, Y, step_size=0.001, grad_clip=1):
     l, grads = value_and_grad(mse_loss, argnums=1)(func, params, X, Y)
     if jnp.isnan(grads[0][0]).any():
-        raise ValueError(f"gradient went to nan, the inputs were {X} and the target was {Y}")
+        raise ValueError(
+            f"gradient went to nan, the inputs were {X} and the target was {Y}"
+        )
 
     grads = [
         (
@@ -67,4 +73,7 @@ def update(func, params, X, Y, step_size=0.001, grad_clip=1):
 
 
 def grad_descent(params, grads, step_size):
-    return [(w - step_size * dw, b - step_size * db) for (w, b), (dw, db) in zip(params, grads)]
+    return [
+        (w - step_size * dw, b - step_size * db)
+        for (w, b), (dw, db) in zip(params, grads)
+    ]

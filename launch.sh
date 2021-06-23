@@ -1,4 +1,11 @@
+#!/usr/bin/env bash
 set -euo pipefail
+
+# Add cuda to path
+export PATH=/usr/local/cuda-11.2/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-11.2/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
 P_DIR=$(dirname $0)
 VENV=$P_DIR/venv/bin/activate
 
@@ -8,7 +15,7 @@ agent='ddqn'
 train_eps=100
 lr=0.01
 df=0.99
-render=true
+render=False
 test_eps=30
 n_layers=2
 batch_size=256
