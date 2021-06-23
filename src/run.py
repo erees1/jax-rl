@@ -265,6 +265,8 @@ def main():
         rewards, losses, agent = train(env, agent, **vars(args))
         test(env, agent, **vars(args))
 
+    env.close()
+
 
 if __name__ == "__main__":
     main()
